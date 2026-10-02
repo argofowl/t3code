@@ -122,7 +122,7 @@ runs a command, such as a dev server, stays open.
 
 On web and desktop, press a thread's **Settle** button and drag up or down to
 settle every thread in that section between it and the one you release on.
-Press `Escape` before releasing to cancel.
+Press `Escape` while dragging to cancel.
 
 By default, environments settle inactive threads after three days and settle
 threads whose pull request merged. A closed pull request can also settle an idle

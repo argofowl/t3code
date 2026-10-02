@@ -87,8 +87,9 @@ export class SidebarPointerSensor {
       this.document.addEventListener("selectionchange", this.clearSelection);
       this.clearSelection();
       this.props.onStart(this.coordinates());
-      return;
     }
+    // The move that starts a drag also moves it, so a release before the
+    // next pointermove still lands where the pointer is.
     if (this.phase === "dragging") {
       if (event.cancelable) event.preventDefault();
       this.props.onMove(coordinates);

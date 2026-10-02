@@ -3437,8 +3437,9 @@ export default function Sidebar() {
         onMove: ({ y }) =>
           sweepTo(threadListRef.current && sidebarThreadKeyAtY(threadListRef.current, y)),
         // Also runs after a press that never moved. Nothing is swept then,
-        // and the button's own click settles the row.
-        onEnd: () => settleThreads(sweptKeys),
+        // and the button's own click settles the row. Rows that changed
+        // section mid-gesture, say pinned from another device, are skipped.
+        onEnd: () => settleThreads(sweptKeys.filter(canSettle)),
         onCancel: () => {},
         onAbort: () => {},
       });
