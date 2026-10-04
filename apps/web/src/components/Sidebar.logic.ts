@@ -274,20 +274,17 @@ export function resolveSidebarDropVerb(
   return "wake";
 }
 
-/** Threads a settle sweep covers: the settleable rows from the row whose
-    Settle was pressed to the row under the pointer, in sidebar order. */
-export function resolveSettleSweepKeys(
+/** Eligible rows between the pressed action and the pointer, in sidebar order. */
+export function resolveSidebarSweepKeys(
   orderedKeys: readonly string[],
   originKey: string,
   targetKey: string,
-  canSettle: (key: string) => boolean,
+  canApply: (key: string) => boolean,
 ): string[] {
   const origin = orderedKeys.indexOf(originKey);
   const target = orderedKeys.indexOf(targetKey);
   if (origin === -1 || target === -1) return [];
-  return orderedKeys
-    .slice(Math.min(origin, target), Math.max(origin, target) + 1)
-    .filter(canSettle);
+  return orderedKeys.slice(Math.min(origin, target), Math.max(origin, target) + 1).filter(canApply);
 }
 
 /** The thread row at a pointer height, clamped to the rows visible in the
